@@ -1,12 +1,13 @@
 import { FaStar, FaEye, FaShareAlt, FaBookmark } from "react-icons/fa";
+import { Link } from "react-router";
 const NewsCard = ({ news }) => {
-  const { title, thumbnail_url, author, details, total_view, rating } = news;
+  const { id, title, image_url, author, details, total_view, rating } = news;
 
   const formattedDate = new Date(
     news.author.published_date,
   ).toLocaleDateString();
   return (
-    <div className="max-w-md bg-white rounded-2xl shadow-md overflow-hidden border">
+    <div className=" bg-white rounded-2xl  overflow-hidden border">
       {/* Header */}
       <div className="flex items-center bg-base-200 justify-between p-4  ">
         <div className="flex items-center gap-3">
@@ -35,7 +36,7 @@ const NewsCard = ({ news }) => {
       {/* Image */}
       <div className="px-4">
         <img
-          src={thumbnail_url}
+          src={image_url}
           alt="news"
           className="rounded-xl w-full object-cover"
         />
@@ -46,7 +47,9 @@ const NewsCard = ({ news }) => {
         {details.length > 200 ? (
           <>
             {details.slice(0, 200)}...{" "}
-            <span className="text-red-400">Read More</span>
+            <Link to={`/news-details/${id}`} className="text-red-400">
+              Read More
+            </Link>
           </>
         ) : (
           details
