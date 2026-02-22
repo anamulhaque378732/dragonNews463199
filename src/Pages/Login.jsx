@@ -1,11 +1,11 @@
-import { use, useState } from "react";
+import { use, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
-
-  const { loginUser, setUser } = use(AuthContext);
+  const emailRef = useRef();
+  const { loginUser, setUser, updatePassword } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const handleLogin = (e) => {
@@ -25,6 +25,18 @@ const Login = () => {
         // alert(err.message);
       });
   };
+
+  const handleUpdatePassword = () => {
+    const email = emailRef.current.value;
+    updatePassword(email)
+      .then(() => {
+        alert("password reset email is sent!!");
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  };
+
   return (
     <div className="flex justify-center   ">
       <div className="card bg-base-100  py-5 w-full max-w-sm shrink-0 shadow-2xl">
@@ -35,6 +47,7 @@ const Login = () => {
           <form onSubmit={handleLogin} className="fieldset">
             <label className="label">Email</label>
             <input
+              ref={emailRef}
               required
               name="email"
               type="email"
@@ -49,7 +62,7 @@ const Login = () => {
               className="input"
               placeholder="Password"
             />
-            <div>
+            <div onClick={handleUpdatePassword} className="">
               <a className="link link-hover">Forgot password?</a>
             </div>
             <button type="submit" className="btn bg-base-300 mt-4">
