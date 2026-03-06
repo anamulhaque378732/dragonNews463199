@@ -1,4 +1,4 @@
-import { Outlet, useNavigation } from "react-router";
+import { Outlet, useLoaderData, useNavigation } from "react-router";
 import Header from "../Component/Header/Header";
 import LatestNews from "../Component/LatestNews/LatestNews";
 import Navbar from "../Component/Navbar/Navbar";
@@ -8,6 +8,7 @@ import Loading from "../Component/Loading/Loading";
 
 const HomeLayouts = () => {
   const { state } = useNavigation();
+  const data = useLoaderData();
 
   return (
     <div>
@@ -15,7 +16,7 @@ const HomeLayouts = () => {
         <Header />
 
         <section className="w-11/12 mx-auto my-3">
-          <LatestNews />
+          <LatestNews data={data} />
         </section>
         <nav className="w-11/12 mx-auto my-3">
           <Navbar />

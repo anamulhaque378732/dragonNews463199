@@ -1,9 +1,11 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import { use } from "react";
+import { use, useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const SocialLogin = () => {
+  const [error, setError] = useState();
+
   const { googleLogin, setUser } = use(AuthContext);
   const provider = new GoogleAuthProvider();
   const handleGoogleLogin = () => {
@@ -12,7 +14,7 @@ const SocialLogin = () => {
         setUser(result.user);
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.message);
       });
   };
 
@@ -24,13 +26,12 @@ const SocialLogin = () => {
           onClick={handleGoogleLogin}
           className="btn btn-outline    hover:bg-secondary  w-full"
         >
-          {" "}
-          <FaGoogle size={24} /> Login With Google{" "}
+          <FaGoogle size={24} /> Login With Google
         </button>
         <button className="btn  hover:bg-secondary text-primary  btn-outline w-full">
-          {" "}
           <FaGithub size={24} /> Login With Github
         </button>
+        <p> {error}</p>
       </div>
     </div>
   );

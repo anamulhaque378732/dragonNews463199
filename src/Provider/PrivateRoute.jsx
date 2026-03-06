@@ -17,21 +17,3 @@ const PrivateRoute = ({ children }) => {
 };
 
 export default PrivateRoute;
-
-// const PrivateRoutes = ({ children }) => {
-//   const { user, loading } = use(AuthContext);
-//   const location = useLocation();
-//   // console.log(location);
-
-//   if (loading) {
-//     return <span className="loading loading-spinner text-error"></span>;
-//   }
-
-//   if (!user) {
-//     return <Navigate state={location?.pathname} to="/login"></Navigate>;
-//   }
-
-//   return children;
-// };
-
-// export default PrivateRoutes;

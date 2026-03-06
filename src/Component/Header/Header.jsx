@@ -7,8 +7,7 @@ const Header = () => {
       <img className="w-[450px]" src={logo} alt="" />
       <p className="text-2xl text-accent"> Journalism Without Fear or Favour</p>
       <p className="text-semibold text-xl">
-        {" "}
-        {format(new Date(), "EEEE , MMMM ,MM ,yyyy")}
+        {format(new Date(), "EEEE, do MMMM, yyyy")}
       </p>
     </div>
   );

@@ -1,8 +1,9 @@
-import { use } from "react";
+import { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState();
   const { createUser, setUser, updateUser } = use(AuthContext);
 
   const navigate = useNavigate();
@@ -29,19 +30,19 @@ const Register = () => {
           })
           .catch((err) => {
             const error = err.message;
+            setError(error);
             setUser(user);
           });
       })
       .catch((err) => {
         const error = err.message;
+        setError(error);
         alert(err.message);
       });
-    // console.log(name, photoUrl, email, password);
   };
 
   return (
     <>
-      {" "}
       <div className="flex justify-center   ">
         <div className="card bg-base-100  py-5 w-full max-w-sm shrink-0 shadow-2xl">
           <h2 className="text-center text-2xl mt-2 font-bold">
@@ -93,6 +94,7 @@ const Register = () => {
                 </Link>{" "}
               </p>
             </div>
+            <p> {error}</p>
           </div>
         </div>
       </div>

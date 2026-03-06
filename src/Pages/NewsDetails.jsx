@@ -14,7 +14,6 @@ const NewsDetails = () => {
     const newsDetails = data.find((singleNews) => singleNews.id == id);
     setNews(newsDetails);
   }, [data, id]);
-  //   console.log(id, data);
 
   return (
     <div className="w-11/12 mx-auto">
