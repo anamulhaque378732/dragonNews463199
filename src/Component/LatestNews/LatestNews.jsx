@@ -3,7 +3,6 @@ import Marquee from "react-fast-marquee";
 const LatestNews = ({ data }) => {
   const latestNews = data.filter((news) => news.others.is_trending === true);
 
-  // const sliceNews = latestNews.silce(0, 10);
   return (
     <div className="flex items-center rounded-2xl gap-3 bg-base-200 p-2">
       <p className="text-base-100 rounded-xl bg-secondary px-3 py-2">
